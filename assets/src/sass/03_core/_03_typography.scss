@@ -1,0 +1,156 @@
+/* 
+ * Body Font Style 
+ */
+body { 
+	font-family: $heading-font;
+	font-size: $base-font-size-px;
+	line-height: $base-line-height;
+	font-weight: $medium;
+	color: $color-black;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	
+	@media all and (max-width: 768px){
+		font-size: $base-font-size-mobile-px;
+		line-height: $base-line-height;
+	}	 
+}
+
+/* 
+ * Main Font Sizes 
+ */
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: $bold;
+	letter-spacing: $spacing-3;
+}
+
+h1,.h1 {
+  font-size: $h1-size;
+  line-height: $h1-line-height;
+}
+
+h2,.h2 {
+  font-size: $h2-size;
+  line-height: $h2-line-height;
+}
+
+h3,.h3 {
+  font-size: $h3-size;
+  line-height: $h3-line-height;
+}
+
+h4,.h4 {
+  font-size: $h4-size;
+  line-height: $h4-line-height;
+}
+
+h5,.h5 {
+  font-size: $h5-size;
+  line-height: $h5-line-height;
+}
+
+h6,.h6 {
+  font-size: $h6-size;
+  line-height: $h6-line-height;
+}
+
+@media all and (max-width: 767px){
+	h1,.h1{
+		font-size: $h2-size;
+		line-height: $h2-line-height;
+	}
+
+	h2,.h2{
+		font-size: $h3-size;
+		line-height: $h3-line-height;
+	}
+}
+
+/*
+ * list Style
+ */
+p, 
+ul, 
+ol, 
+pre, 
+table, 
+blockquote {
+  margin-bottom: $base-line-height;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+ol { 
+	list-style-type: upper-roman;
+	list-style-position: inside;
+}
+
+// blockquote {
+// 	font-size: @blockquote-size;
+// 	line-height: @blockquote-line-height;
+// 	padding: 0;
+// 	margin: 0;
+// 	border-left: 0;
+// }
+
+strong {
+	font-weight: $bold;
+}
+
+a:hover,
+a:focus,
+a:active{
+	text-decoration: none;
+	outline: none;
+}
+
+a {
+	font-family: $body-font;
+}
+
+/*! Typography -- Helpers */
+
+.title--small {
+	font-size: $h3-size;
+	letter-spacing: $spacing-5;
+}
+
+.excerpt {
+    letter-spacing: $spacing-1;
+}
+
+.type--uppercase{ 
+	text-transform: uppercase; 
+}
+
+.type--bold{
+	font-weight: bold;
+}
+
+.type--italic{
+	font-weight: italic;
+}
+
+.type--strikethrough{
+	text-decoration: line-through;
+	opacity: .5;
+}
+
+.type--underline{
+	text-decoration: underline;
+}
+
+.type--body-font{
+	font-family: $body-font;
+}

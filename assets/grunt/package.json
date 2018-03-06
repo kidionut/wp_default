@@ -1,0 +1,23 @@
+{
+    "name": "Development_Workflow",
+    "description": "Built to use on small or big peojects",
+    "version": "0.0.1",
+    "author": "Design 19 - Razvan F.",
+    "license": "Design19",
+    "main": "gruntfile.js",
+    "dependencies": {},
+    "devDependencies": {
+        "autoprefixer-core": "^6.0.1",
+        "grunt": "^1.0.2",
+        "grunt-autoprefixer": "^3.0.4",
+        "grunt-concat-css": "^0.3.1",
+        "grunt-contrib-clean": "^1.1.0",
+        "grunt-contrib-concat": "^1.0.1",
+        "grunt-contrib-cssmin": "^2.2.1",
+        "grunt-contrib-sass": "^1.0.0",
+        "grunt-contrib-uglify": "^3.3.0",
+        "grunt-contrib-watch": "^1.0.0",
+        "grunt-criticalcss": "^2.1.0",
+        "grunt-google-fonts": "^0.5.0"
+    }
+}
