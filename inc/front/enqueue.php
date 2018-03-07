@@ -11,10 +11,17 @@ function wpdocs_enqueue_custom_admin_style() {
 // Client CSS & JS
 function myTheme_enqueue() {
 	
-	if( WP_DEBUG === true ) { 
+	if ( WP_DEBUG === true ) { 
 		wp_register_style( 'myTheme_style', get_template_directory_uri() . '/assets/dist/css/style.css' );
 		wp_register_script( 'myTheme_script', get_template_directory_uri() . '/assets/dist/js/scripts.js', array('jquery'), null, true );
 	} else {
+		//Inline CSS
+		function hook_critical_css() {
+		    $critical_css = file_get_contents( get_template_directory_uri() . '/assets/dist/css/critical.css' );
+		    echo '<style>' . $critical_css . '</style>';
+		}
+		add_action('wp_head','hook_critical_css');
+
 		wp_register_style( 'myTheme_style', get_template_directory_uri() . '/assets/dist/css/style.min.css' );
 		wp_register_script( 'myTheme_script', get_template_directory_uri() . '/assets/dist/js/scripts.min.js', array('jquery'), null, true );
 	}
