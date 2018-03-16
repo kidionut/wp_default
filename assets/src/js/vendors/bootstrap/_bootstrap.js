@@ -1,0 +1,12 @@
+@import 'alert.js';
+@import 'button.js';
+@import 'carousel.js';
+@import 'collapse.js';
+@import 'dropdown.js';
+@import 'index.js';
+@import 'modal.js';
+@import 'popover.js';
+@import 'scrollspy.js';
+@import 'tab.js';
+@import 'tooltip.js';
+@import 'util.js';

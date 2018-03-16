@@ -1,0 +1,236 @@
+/// CLEARFIX
+///
+/// Provides an easy way to include a clearfix for containing floats.
+///
+/// @link https://goo.gl/yP5hiZ
+///
+/// @example scss
+///   .element {
+///     @include clearfix;
+///   }
+///
+///   // CSS Output
+///   .element::after {
+///     clear: both;
+///     content: "";
+///     display: block;
+///   }
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+
+/// Calc
+/// @example
+/// //SCSS
+/// .calc{
+/// 	 @include calc(width,'100% - 20px');
+///	}
+/// //CSS
+/// .calc {
+///		width: calc(100% - 20px);
+///	}
+
+@mixin calc($prop, $val) {
+  #{$prop}: calc(#{$val});
+}
+
+
+/// Full Width Containers in Limited Width Parents
+/// @example
+/// //SCSS
+/// .full-width {
+///   @include full-width(margin, 960px);
+/// }
+/// //CSS
+/// .full-width {
+///   margin-left: calc(-50vw + 50%);
+///   margin-right: calc(-50vw + 50%);
+/// }
+@mixin full-width($support-type: margin,$min-width:null){
+  @if $support-type == 'margin' {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+
+  @if $support-type == 'position' {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  
+  @if $support-type == 'translate' {
+    width: 100vw;
+    transform: translateX(calc((#{$min-width} - 100vw)/2));
+  }
+}
+
+
+/// position`
+/// //SCSS
+/// 
+/// .absolute{
+///   @include position(absolute,top 10px right 20px);
+/// }
+/// .absolute{
+///   @include position(absolute,top 0 right 0 bottom 0 left 0);
+/// }
+///	
+/// //Output CSS
+/// 
+/// .absolute {
+///   top: 10px;
+///   right: 20px;
+///   position: absolute; 
+/// }
+/// 
+/// .absolute {
+///   top: 0;
+///   right: 0;
+///   bottom: 0;
+///   left: 0;
+///   position: absolute; 
+/// }
+/// @param {string} $position : `static` | `relative` | `absolute` | `fixed`
+/// @param {string} $args -: `top` | `right` | `bottom` | `left`
+
+@mixin position($position,$args){
+	@each $o in top right bottom left {
+		$i: index($args, $o);
+		@if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+			#{$o}: nth($args, $i + 1);
+		}
+	}
+	position: $position;
+}
+
+
+/// Mixin to customize scrollbars
+/// Beware, this does not work in all browsers
+/// @author Hugo Giraudel
+/// @param {Length} $size - Horizontal scrollbar's height and vertical scrollbar's width
+/// @param {Color} $foreground-color - Scrollbar's color
+/// @param {Color} $background-color [mix($foreground-color, white, 50%)] - Scrollbar's color
+/// @example scss - Scrollbar styling
+///   @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+
+
+@mixin placeholder-text($color){
+	&::-webkit-input-placeholder {
+	   color: $color;
+	}
+	&:-moz-placeholder { /* Firefox 18- */
+	color: $color;
+	}
+	&::-moz-placeholder {  /* Firefox 19+ */
+	   color: $color;
+	}
+	&:-ms-input-placeholder {  
+	   color: $color;
+	}
+}
+
+@mixin disable-select() {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*
+ *  Box Shadow Mixin
+ */
+@mixin shadow($level : 1){
+    @if $level == 1 {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    @else if $level == 2 {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    @else if $level == 3 {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    @else if $level == 4 {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+    @else if $level == 5 {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+    @else if $level == 6 {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.11);
+    }
+}
+/*
+* Media Query Manager
+*   $grid-breakpoints: (
+*       xs: 0,
+*       sm: 576px,
+*       md: 768px,
+*       lg: 992px,
+*       xl: 1200px
+* ) !default;
+* 
+* $breakpoint argument choices :
+* - phone
+* - tab
+* - desk
+* 
+*
+* ORDER: Base + Typography > General Layout + Grid > Page Layout > Components
+*
+*/
+
+@mixin media($breakpoint) {
+	@if $breakpoint == phone {
+		@media( max-width: map-get($grid-breakpoints , sm) ) { @content };
+	}	
+	@if $breakpoint == tab {
+		@media( max-width: map-get($grid-breakpoints , md) ) { @content };
+	}
+	@if $breakpoint == desk {
+		@media( max-width: map-get($grid-breakpoints , lg) ) { @content };
+	}
+}
+
+
+@mixin media_min($breakpoint) {
+	@if $breakpoint == phone {
+		@media( min-width: map-get($grid-breakpoints , sm) ) { @content };
+	}	
+	@if $breakpoint == tab {
+		@media( min-width: map-get($grid-breakpoints , md) ) { @content };
+	}
+	@if $breakpoint == desk {
+		@media( min-width: map-get($grid-breakpoints , lg) ) { @content };
+	}
+}

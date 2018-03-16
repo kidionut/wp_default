@@ -1,0 +1,94 @@
+//////// Colours
+
+$has-primary-1: true;
+$has-primary-2: true;
+
+//////// Typography
+
+$base-font-size: 			percentage(16/16); // change first value to pixel font size
+$base-font-size-px: 		16px; // the first value from above;
+$base-font-size-mobile: 	percentage(14/16); // change first value to pixel font size
+$base-font-size-mobile-px: 	16px; // the first value from above;
+$base-line-height: 			1.45em;
+
+$body-font: 	'AvenirNext';
+$heading-font: 	'Montserrat';
+
+$h1-size: 48px;
+$h2-size: 42px;
+$h3-size: 26px;
+$h4-size: 24px;
+$h5-size: 16px;
+$h6-size: 16px;
+$p      : 16px;
+$font-small    : 14px;
+
+$bold    : 800;
+$medium  : 500;
+$regular : 400;
+
+$spacing-3: -0.3px;
+$spacing-5: -0.5px;
+$spacing-5-plus: 0.5px;
+$spacing-1: 1px;
+$spacing-1-minus: -1px;
+
+$ligatures-active: true;
+
+$h1-line-height: 58px;
+$h2-line-height: 38px;
+$h3-line-height: 31.5px;
+$h4-line-height: 22px;
+$h5-line-height: 16px;
+$h6-line-height: 16px;
+$p-line-height : 23.5px;
+
+$color-white:      #ffffff;
+$color-black:      #0e0e0e;
+$color-blue:       #2eebf2;
+$color-light-gray: #f9f9f9;
+
+$bezier-1 : cubic-bezier(0.65, 0.05, 0.36, 1);
+$bezier-2 : cubic-bezier(0.25, -0.25, 0.75, 1.25);
+$speed-1      : 0.1s;
+$speed-2      : 0.2s;
+$speed-3      : 0.3s;
+$speed-4      : 0.4s;
+$speed-5      : 0.5s;
+
+$box-shadow-level: 1;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:                12;
+$grid-gutter-width:           30px;
