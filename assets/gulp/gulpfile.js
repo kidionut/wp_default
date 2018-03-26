@@ -18,7 +18,6 @@ var gulps           = require("gulp-series");
 
 
 var styleSRC        = '../src/scss/style.scss';
-var styleAdminSRC   = '../src/scss/admin.scss';
 var styleURL        = '../dist/css';
 var mapURL          = './';
 
@@ -27,16 +26,18 @@ var mapURL          = './';
 // Styles for Development
 //
 gulp.task( 'styles-dev', function() {
-    gulp.src([ styleSRC, styleAdminSRC ])
+    gulp.src([ styleSRC ])
     .pipe( sourcemaps.init() )
     .pipe( sass({
-        errLogToConsole: true
+        errLogToConsole: true,
+        outputStyle: 'expanded'
     }) )
     .on( 'error', console.error.bind( console ) )
+    .pipe(autoprefixer( ['> 0.000001%']) )
     .pipe( sourcemaps.write( mapURL ) )
     .pipe( gulp.dest( styleURL ))
     .pipe(notify({
-        message: 'SCSS COMPILED DEV',
+        message: 'SCSS COMPILED',
         onLast: true
     }))
 });
@@ -83,6 +84,25 @@ gulp.task('scripts-prod', function() {
         .pipe(gulp.dest('../dist/js'))
 });
 
+//-------------------------------------                                  
+// Watch
+//
+gulp.task('watch', function() {
+
+    // Watch .scss files
+    gulp.watch('../src/scss/**/*.scss', ['styles-dev']);
+
+    // Watch .js files
+    gulp.watch('../src/js/**/*.js', ['scripts-dev']);
+
+});
+
+
+
+gulp.task('build', ['styles-prod', 'scripts-prod']);
+
+
+
 
 //-------------------------------------                                  
 // Download Google Fonts
@@ -109,23 +129,3 @@ gulp.task('fonts-url' , function() {
 });
 
 gulp.task('fonts', runSequence('google-fonts' , 'fonts-url' ));
-
-
-
-
-//-------------------------------------                                  
-// Watch
-//
-gulp.task('dev', function() {
-
-    // Watch .scss files
-    gulp.watch('../src/scss/**/*.scss', ['styles-dev']);
-
-    // Watch .js files
-    gulp.watch('../src/js/**/*.js', ['scripts-dev']);
-
-});
-
-
-
-gulp.task('prod', ['styles-prod', 'scripts-prod']);
