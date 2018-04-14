@@ -12,12 +12,15 @@ var rename          = require('gulp-rename');
 var replace         = require('gulp-replace');
 var runSequence     = require('run-sequence');
 
+var livereload = require('gulp-livereload');
+
 var googleWebFonts  = require('gulp-google-webfonts');
 var gulps           = require("gulp-series");
 
 
 
 var styleSRC        = '../src/scss/style.scss';
+var styleAdminSRC   = '../src/scss/admin.scss';
 var styleURL        = '../dist/css';
 var mapURL          = './';
 
@@ -29,17 +32,16 @@ gulp.task( 'styles-dev', function() {
     gulp.src([ styleSRC ])
     .pipe( sourcemaps.init() )
     .pipe( sass({
-        errLogToConsole: true,
-        outputStyle: 'expanded'
+        errLogToConsole: true
     }) )
     .on( 'error', console.error.bind( console ) )
-    .pipe(autoprefixer( ['> 0.000001%']) )
     .pipe( sourcemaps.write( mapURL ) )
     .pipe( gulp.dest( styleURL ))
     .pipe(notify({
-        message: 'SCSS COMPILED',
+        message: 'SCSS COMPILED DEV',
         onLast: true
     }))
+    .pipe( livereload() )
 });
 
 
@@ -47,7 +49,7 @@ gulp.task( 'styles-dev', function() {
 // Styles for Production          
 //
 gulp.task( 'styles-prod', function() {
-    gulp.src([ styleSRC, styleAdminSRC ])
+    gulp.src([ styleSRC ])
     .pipe( sass({
         errLogToConsole: true,
         outputStyle: 'compressed'
@@ -71,6 +73,7 @@ gulp.task('scripts-dev', function() {
         .pipe(jsImport({hideConsole: true}))
         .pipe(concat('app.js'))
         .pipe(gulp.dest('../dist/js'))
+        .pipe( livereload() )
 });
 
 //-------------------------------------                                  
@@ -83,25 +86,6 @@ gulp.task('scripts-prod', function() {
         .pipe(uglify())
         .pipe(gulp.dest('../dist/js'))
 });
-
-//-------------------------------------                                  
-// Watch
-//
-gulp.task('watch', function() {
-
-    // Watch .scss files
-    gulp.watch('../src/scss/**/*.scss', ['styles-dev']);
-
-    // Watch .js files
-    gulp.watch('../src/js/**/*.js', ['scripts-dev']);
-
-});
-
-
-
-gulp.task('build', ['styles-prod', 'scripts-prod']);
-
-
 
 
 //-------------------------------------                                  
@@ -129,3 +113,26 @@ gulp.task('fonts-url' , function() {
 });
 
 gulp.task('fonts', runSequence('google-fonts' , 'fonts-url' ));
+
+
+
+
+//-------------------------------------                                  
+// Watch
+//
+gulp.task('dev', function() {
+
+    // Watch .scss files
+    gulp.watch('../src/scss/**/*.scss', ['styles-dev']);
+
+    // Watch .js files
+    gulp.watch('../src/js/**/*.js', ['scripts-dev']);
+
+    //LiveReload
+    livereload.listen();
+
+});
+
+
+
+gulp.task('prod', ['styles-prod', 'scripts-prod']);

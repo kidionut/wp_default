@@ -1,21 +1,15 @@
 {
     "name": "Development_Workflow",
     "description": "Built for efficiency",
-    "version": "1.0.5",
-    "author": "Design 19 - Razvan F.",
-    "license": "GPL-3.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/razvanFrandes/wp_default"
-    },
+    "version": "1.2.0",
+    "author": "Design 19 - Razvan Frandes. & Ionut Kovacs.",
     "keywords": [
-        "wordpress",
-        "theme",
         "starter"
     ],
     "devDependencies": {
         "autoprefixer-core": "^6.0.1",
         "gulp": "^3.9.1",
+        "gulp-livereload": "^3.8.1",
         "gulp-autoprefixer": "^5.0.0",
         "gulp-clean-css": "^3.9.3",
         "gulp-concat": "^2.6.1",
@@ -26,7 +20,6 @@
         "gulp-google-webfonts": "^1.0.0",
         "gulp-js-import": "^1.0.6",
         "gulp-jshint": "^2.1.0",
-        "gulp-livereload": "^3.8.1",
         "gulp-notify": "^3.2.0",
         "gulp-rename": "^1.2.2",
         "gulp-replace": "^0.6.1",
