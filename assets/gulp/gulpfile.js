@@ -80,7 +80,7 @@ gulp.task('scripts-dev', function() {
 // Concatenate & Minify JS for Production
 //
 gulp.task('scripts-prod', function() {
-    return gulp.src('../src/js/**/*.js')
+    return gulp.src('../src/js/main.js')
         .pipe(concat('app.js'))
         .pipe(rename('app.min.js'))
         .pipe(uglify())
